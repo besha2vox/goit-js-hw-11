@@ -8,21 +8,23 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <form class="search-form" id="search-form">
-      <input
-        type="text"
-        name="searchQuery"
-        autocomplete="off"
-        placeholder="Search images..."
-      />
-      <button type="submit">Search</button>
-    </form>
+    <main>
+      <form id="search-form" class="search-form" id="search-form">
+        <input
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <button type="submit">Search</button>
+      </form>
 
-    <div class="gallery"></div>
+      <div class="gallery"></div>
 
-    <div class="load-more si-hidden">
-      <button>load-more</button>
-      <span></span>
-    </div>
+      <div class="load-more" hidden>
+        <button>load-more</button>
+        <span></span>
+      </div>
+    </main>
   </body>
 </html>

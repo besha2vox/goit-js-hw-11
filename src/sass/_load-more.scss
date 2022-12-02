@@ -9,7 +9,7 @@
   & span {
     margin: 10px auto;
     width: 50px;
-    border: 5px dashed #0354fa;
+    border: 7px dashed #2196f3;
     border-radius: 50%;
     animation-name: loader;
     animation-timing-function: ease-in-out;
@@ -19,15 +19,31 @@
 
   & button {
     position: absolute;
+    display: block;
+    width: max-content;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    border: 5px solid #0354fa;
+
+    margin-top: 15px;
     cursor: pointer;
+    color: #fff;
+    background-color: #2196f3;
+    border: 0;
+    outline: 0;
+    padding: 8px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.05);
+    font: inherit;
+    font-weight: 500;
+    transition: background-color 250ms ease-in-out, box-shadow 250ms ease-in-out;
   }
 
-  &.is-hidden {
-    display: none;
+  & button:hover,
+  & button:focus {
+    box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.15);
+    background-color: #1976d2;
   }
 
   &.is-loading {
@@ -48,6 +64,7 @@
     & span {
       opacity: 0;
       visibility: 0;
+      pointer-events: none;
     }
 
     & button {
@@ -62,5 +79,35 @@
 @keyframes loader {
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.stop-load {
+  display: block;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  background-color: #1a1919;
+
+  & a {
+    text-decoration: none;
+    height: 36px;
+    font: inherit;
+    font-size: inherit;
+    background-color: #2196f3;
+    color: #ffffff;
+    border: 0;
+    outline: 0;
+    padding: 8px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.05);
+    font-weight: 500;
+    transition: background-color 250ms ease-in-out, box-shadow 250ms ease-in-out;
+  }
+  & button:hover,
+  & button:focus {
+    box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.15);
+    background-color: #1976d2;
   }
 }

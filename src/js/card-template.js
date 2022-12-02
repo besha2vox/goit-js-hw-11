@@ -18,9 +18,11 @@ export function cardTemplate(props) {
   } = props;
 
   return `<div class="photo-card">
-    <a href="${largeImageURL}">
-      <img src="${webformatURL}" alt="${tags}" loading="lazy" />
-      </a>
+      <div class="img-wrapper">
+        <a href="${largeImageURL}">
+          <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+          </a>
+      </div>
       <div class="info">
         <p class="info-item">
             <b>Likes: ${likes}</b>
