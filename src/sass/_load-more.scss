@@ -83,7 +83,6 @@
 }
 
 .stop-load {
-  display: block;
   padding: 20px;
   margin-top: 20px;
   border-radius: 10px;
@@ -105,8 +104,8 @@
     font-weight: 500;
     transition: background-color 250ms ease-in-out, box-shadow 250ms ease-in-out;
   }
-  & button:hover,
-  & button:focus {
+  & a:hover,
+  & a:focus {
     box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.15);
     background-color: #1976d2;
   }

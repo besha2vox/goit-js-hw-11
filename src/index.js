@@ -4,11 +4,13 @@ import { API } from './js/api';
 import { cardTemplate } from './js/card-template';
 import { LoadMore } from './js/load-more';
 import { totalHitsCounr, failure } from './js/message';
+import { renderTheme, onThemeToggle } from './js/theme-switcher';
 
 const refs = {
   form: document.querySelector('#search-form'),
   gallery: document.querySelector('.gallery'),
   loadMore: document.querySelector('.load-more'),
+  themeSwitcher: document.querySelector('.theme-switch__toggle'),
 };
 
 const loadMore = new LoadMore(refs.loadMore);
@@ -21,6 +23,12 @@ let lightbox = new SimpleLightbox('.gallery a', {
 
 refs.form.addEventListener('submit', onFormSubmit);
 refs.loadMore.addEventListener('click', onLoadMoreClick);
+refs.themeSwitcher.addEventListener(
+  'change',
+  onThemeToggle.bind(this, refs.themeSwitcher)
+);
+
+renderTheme();
 
 // SUBMIT FORM>-----------------------
 

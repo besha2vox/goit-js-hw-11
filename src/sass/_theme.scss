@@ -1,0 +1,61 @@
+@import './theme-switcher';
+
+body.dark-theme {
+  background-color: #333333;
+
+  & .theme-switch {
+    background-color: #333333;
+    box-shadow: 0 0 20px #333333;
+    transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+  }
+
+  & .search-form {
+    & input:focus,
+    & input:hover {
+      box-shadow: inset 0px 0px 10px #333333;
+    }
+  }
+}
+
+body.light-theme {
+  background-color: #ffffff;
+
+  & .search-form {
+    & input {
+      border: 1px solid #2196f3;
+      border-right: none;
+
+      transition: border 300ms ease-in-out;
+    }
+
+    & input:focus,
+    & input:hover {
+      box-shadow: inset 0px 0px 10px #2196f3;
+    }
+  }
+
+  & .theme-switch {
+    background-color: #fff;
+    box-shadow: 0 0 10px #fff;
+    transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+  }
+
+  & .theme-switch__icon {
+    color: #333333;
+
+    transition: color 300ms ease-in-out;
+  }
+
+  .photo-card {
+    background-color: #1976d2;
+  }
+}
+
+.toolbar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px;
+}
