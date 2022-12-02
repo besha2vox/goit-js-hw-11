@@ -5,17 +5,17 @@
   "homepage": "https://besha2vox.github.io/goit-js-hw-11.git",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-11.git/"
+    "build": "parcel build src/*.html --public-url /goit-js-hw-11/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/besha2vox/goit-js-hw-11.git.git"
+    "url": "git+https://github.com/besha2vox/goit-js-hw-11.git"
   },
   "keywords": [],
   "author": "Serhii Revva <besha2vox@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/besha2vox/goit-js-hw-11.git/issues"
+    "url": "https://github.com/besha2vox/goit-js-hw-11/issues"
   },
   "dependencies": {
     "axios": "^1.2.0",
