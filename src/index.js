@@ -1,6 +1,5 @@
 import { Notify } from 'notiflix';
-// import SimpleLightbox from 'simplelightbox';
-// import InfiniteScroll from 'infinite-scroll';
+import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { API } from './js/api';
 import { cardTemplate } from './js/card-template';
@@ -12,15 +11,13 @@ const refs = {
 };
 
 let api = null;
-
-// let infScroll = new InfiniteScroll('.gallery', {
-//   path: infiniteScroll,
-//   append: '.post',
-//   scrollThreshold: 100,
-//   status: '.page-load-status',
-// });
+let lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 refs.form.addEventListener('submit', onFormSubmit);
+refs.loadMore.addEventListener('click', onLoadMoreClick);
 
 async function onFormSubmit(e) {
   e.preventDefault();
@@ -31,27 +28,38 @@ async function onFormSubmit(e) {
   api = new API(query);
   api.page = 1;
 
-  fetchPhotos();
+  const data = await createData();
+  render(data);
+
+  lightbox.refresh();
 }
 
-// function infiniteScroll() {
-//   if (!api) return;
-//   api.pageIncrement();
-//   fetchPhotos();
-// }
+//* Fetch
 
-function fetchPhotos() {
-  api
+async function createData() {
+  try {
+    return await fetchPhotos();
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+async function fetchPhotos() {
+  return await api
     .getPhotos()
-    .then(resp => {
-      if (resp.data.hits.length < 1) throw Error();
-      render(resp.data);
+    .then(async resp => {
+      const data = await resp.data;
+      if (data.hits.length < 1) throw Error();
+
+      return data;
     })
     .catch(error => {
       console.log(error);
       message(false);
     });
 }
+
+//* Render
 
 function render({ totalHits, hits }) {
   const template = hits.map(cardTemplate);
@@ -63,6 +71,8 @@ function render({ totalHits, hits }) {
   refs.gallery.insertAdjacentHTML('beforeend', template);
 }
 
+//* message
+
 function message(params) {
   if (params) {
     Notify.info(`Hooray! We found ${params} images.`);
@@ -72,3 +82,22 @@ function message(params) {
     'Sorry, there are no images matching your search query. Please try again.'
   );
 }
+
+//* infinity scroll
+
+// const options = {
+//   root: document.body,
+//   rootMargin: '-30px',
+//   threshold: 1.0,
+// };
+
+// function onInfiniteScroll() {
+//   if (!api) return;
+//   api.pageIncrement();
+//   fetchPhotos();
+// }
+
+// function infiniteScroll() {
+//   const observer = new IntersectionObserver(onInfiniteScroll, options);
+//   observer.observe(refs.loadMore);
+// }

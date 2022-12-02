@@ -17,10 +17,11 @@ export class API {
     this.page = 1;
   }
 
-  getPhotos() {
-    return axios.get(
+  async getPhotos() {
+    const promise = await axios.get(
       `${this.URL}?key=${this.API_KEY}&q=${this.query}&image_type=photo&safesearch=true&orientation=horizontal&page=${this.page}&per_page=40`
     );
+    return promise;
   }
 
   pageIncrement() {
