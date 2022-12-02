@@ -19,7 +19,7 @@ export class API {
 
   getPhotos() {
     return axios.get(
-      `${this.URL}?key=${this.API_KEY}&q=${this.query}&image_type=photo&safesearch=true&orientation=horizontal`
+      `${this.URL}?key=${this.API_KEY}&q=${this.query}&image_type=photo&safesearch=true&orientation=horizontal&page=${this.page}&per_page=40`
     );
   }
 
