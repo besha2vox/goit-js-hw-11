@@ -1,11 +1,3 @@
-//? webformatURL - посилання на маленьке зображення для списку карток.
-//? largeImageURL - посилання на велике зображення.
-//? tags - рядок з описом зображення. Підійде для атрибуту alt.
-//? likes - кількість лайків.
-//? views - кількість переглядів.
-//? comments - кількість коментарів.
-//? downloads - кількість завантажень.
-
 export function cardTemplate(props) {
   const {
     webformatURL,
