@@ -47,6 +47,7 @@ async function onFormSubmit(e) {
 
   const data = await createData();
 
+  if (!data) return;
   render(data);
   loadMore.loadingHidden();
   lightbox.refresh();
@@ -73,7 +74,10 @@ async function fetchPhotos() {
       if (data.hits.length < 1) throw Error();
       return data;
     })
-    .catch(error => message.failure());
+    .catch(error => {
+      message.failure();
+      loadMore.stopLoad();
+    });
 }
 
 // Render>-----------------------

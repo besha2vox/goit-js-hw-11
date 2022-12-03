@@ -48,10 +48,11 @@ export class LoadMore {
   }
 
   // STOP LOADING>-----------------------
-  stopLoad({ info }) {
+  stopLoad(message) {
     this.loadMoreIsHidden();
 
-    info();
+    if (!message) return;
+    message.info();
     this.loadMore.insertAdjacentHTML('afterend', this.template);
   }
 }
