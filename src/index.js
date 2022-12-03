@@ -36,11 +36,10 @@ renderTheme();
 
 async function onFormSubmit(e) {
   e.preventDefault();
-  loadMore.loadingVisible();
 
   const query = e.target.searchQuery.value;
   if (api !== null && query === api.query && api.page === 1) return;
-
+  loadMore.loadingVisible();
   api = new API(query);
   api.page = 1;
 
@@ -50,6 +49,7 @@ async function onFormSubmit(e) {
   loadMore.loadingHidden();
   lightbox.refresh();
   loadMore.loadingHidden();
+  if (data.totalHits <= refs.gallery.children.length) loadMore.stopLoad();
 }
 
 // Fetch>-----------------------
