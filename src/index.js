@@ -40,6 +40,8 @@ async function onFormSubmit(e) {
 
   const query = e.target.searchQuery.value;
   if (api !== null && query === api.query && api.page === 1) return;
+  refs.gallery.innerHTML = '';
+  loadMore.removeMessage();
   loadMore.loadingVisible();
 
   api = new API(query);
@@ -52,7 +54,6 @@ async function onFormSubmit(e) {
   loadMore.loadingHidden();
   lightbox.refresh();
   loadMore.loadingHidden();
-  loadMore.removeMessage();
   if (data.totalHits <= refs.gallery.children.length)
     loadMore.stopLoad(message);
 }
