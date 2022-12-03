@@ -4,7 +4,7 @@ import { API } from './js/api';
 import { cardTemplate } from './js/card-template';
 import { LoadMore } from './js/load-more';
 import { totalHitsCounr, failure } from './js/message';
-import { renderTheme, onThemeToggle } from './js/theme-switcher';
+import { ThemeSwitcher } from './js/theme-switcher';
 import { smoothScroll } from './js/scroll';
 
 const refs = {
@@ -13,9 +13,9 @@ const refs = {
   loadMore: document.querySelector('.load-more'),
   themeSwitcher: document.querySelector('.theme-switch__toggle'),
 };
-console.log('refs', refs.gallery.getBoundingClientRect());
 
 const loadMore = new LoadMore(refs.loadMore);
+const themeSwitcher = new ThemeSwitcher(refs.themeSwitcher);
 
 let api = null;
 let lightbox = new SimpleLightbox('.gallery a', {
@@ -25,12 +25,13 @@ let lightbox = new SimpleLightbox('.gallery a', {
 
 refs.form.addEventListener('submit', onFormSubmit);
 refs.loadMore.addEventListener('click', onLoadMoreClick);
+
 refs.themeSwitcher.addEventListener(
   'change',
-  onThemeToggle.bind(this, refs.themeSwitcher)
+  themeSwitcher.onThemeToggle.bind(themeSwitcher)
 );
 
-renderTheme();
+themeSwitcher.renderTheme();
 
 // SUBMIT FORM>-----------------------
 
@@ -40,6 +41,7 @@ async function onFormSubmit(e) {
   const query = e.target.searchQuery.value;
   if (api !== null && query === api.query && api.page === 1) return;
   loadMore.loadingVisible();
+
   api = new API(query);
   api.page = 1;
 

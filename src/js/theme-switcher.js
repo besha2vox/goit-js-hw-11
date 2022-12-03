@@ -1,46 +1,48 @@
-const THEME_STORAGE_KEY = 'theme';
-const Theme = {
-  LIGHT: 'light-theme',
-  DARK: 'dark-theme',
-};
-
-export function onThemeToggle(themeSwitcher) {
-  const { isLightTheme, isDarkTheme } = getBoolean();
-
-  if (isLightTheme) {
-    localStorage.setItem(THEME_STORAGE_KEY, Theme.DARK);
+export class ThemeSwitcher {
+  constructor(element) {
+    this.themeSwitcherEl = element;
+    this.THEME_STORAGE_KEY = 'theme';
+    this.Theme = {
+      LIGHT: 'light-theme',
+      DARK: 'dark-theme',
+    };
   }
 
-  if (isDarkTheme) {
-    localStorage.setItem(THEME_STORAGE_KEY, Theme.LIGHT);
+  onThemeToggle() {
+    const isLightTheme = this.getBoolean();
+
+    if (isLightTheme) {
+      localStorage.setItem(this.THEME_STORAGE_KEY, this.Theme.DARK);
+    }
+
+    if (!isLightTheme) {
+      localStorage.setItem(this.THEME_STORAGE_KEY, this.Theme.LIGHT);
+    }
+
+    this.renderTheme();
+    return;
   }
 
-  renderTheme();
-}
+  renderTheme() {
+    const isLightTheme = this.getBoolean();
 
-export function renderTheme() {
-  const { isLightTheme, isDarkTheme } = getBoolean();
+    if (!isLightTheme) {
+      this.themeSwitcherEl.setAttribute('checked', true);
+      this.changeBodyClass(this.Theme.DARK, this.Theme.LIGHT);
+    }
 
-  if (isDarkTheme) {
-    document
-      .querySelector('.theme-switch__toggle')
-      .setAttribute('checked', true);
-    changeBodyClass(Theme.DARK, Theme.LIGHT);
+    if (isLightTheme) {
+      this.changeBodyClass(this.Theme.LIGHT, this.Theme.DARK);
+    }
   }
 
-  if (isLightTheme) {
-    changeBodyClass(Theme.LIGHT, Theme.DARK);
+  changeBodyClass(add, remove) {
+    document.body.classList.add(add);
+    document.body.classList.remove(remove);
   }
-}
 
-function changeBodyClass(add, remove) {
-  document.body.classList.add(add);
-  document.body.classList.remove(remove);
-}
-
-function getBoolean() {
-  const storageTheme = localStorage.getItem(THEME_STORAGE_KEY);
-  const isLightTheme = storageTheme === Theme.LIGHT || !storageTheme;
-  const isDarkTheme = storageTheme === Theme.DARK;
-  return { isLightTheme, isDarkTheme };
+  getBoolean() {
+    const storageTheme = localStorage.getItem(this.THEME_STORAGE_KEY);
+    return storageTheme === this.Theme.LIGHT || !storageTheme;
+  }
 }
