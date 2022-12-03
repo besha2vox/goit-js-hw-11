@@ -1,6 +1,3 @@
-import { remove } from 'lodash';
-import { endInfo } from './message';
-
 export class LoadMore {
   constructor(loadMore) {
     this.loadMore = loadMore;
