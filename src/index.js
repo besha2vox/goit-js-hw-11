@@ -5,6 +5,7 @@ import { cardTemplate } from './js/card-template';
 import { LoadMore } from './js/load-more';
 import { totalHitsCounr, failure } from './js/message';
 import { renderTheme, onThemeToggle } from './js/theme-switcher';
+import { smoothScroll } from './js/scroll';
 
 const refs = {
   form: document.querySelector('#search-form'),
@@ -12,6 +13,7 @@ const refs = {
   loadMore: document.querySelector('.load-more'),
   themeSwitcher: document.querySelector('.theme-switch__toggle'),
 };
+console.log('refs', refs.gallery.getBoundingClientRect());
 
 const loadMore = new LoadMore(refs.loadMore);
 
@@ -93,6 +95,7 @@ async function onLoadMoreClick() {
   const data = await createData();
 
   render(data);
+  smoothScroll(refs.gallery);
   lightbox.refresh();
   loadMore.loadingHidden();
 
