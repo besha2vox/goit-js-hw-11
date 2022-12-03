@@ -52,6 +52,7 @@ async function onFormSubmit(e) {
   loadMore.loadingHidden();
   lightbox.refresh();
   loadMore.loadingHidden();
+  loadMore.removeMessage();
   if (data.totalHits <= refs.gallery.children.length)
     loadMore.stopLoad(message);
 }

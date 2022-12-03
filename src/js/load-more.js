@@ -1,3 +1,4 @@
+import { remove } from 'lodash';
 import { endInfo } from './message';
 
 export class LoadMore {
@@ -54,5 +55,13 @@ export class LoadMore {
     if (!message) return;
     message.info();
     this.loadMore.insertAdjacentHTML('afterend', this.template);
+  }
+
+  // REMOVE END MESSAGE
+
+  removeMessage() {
+    const element = document.querySelector('.stop-load');
+    if (!element) return;
+    element.remove();
   }
 }
