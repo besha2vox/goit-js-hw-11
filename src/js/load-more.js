@@ -57,7 +57,7 @@ export class LoadMore {
     this.loadMore.insertAdjacentHTML('afterend', this.template);
   }
 
-  // REMOVE END MESSAGE
+  // REMOVE ENDING MESSAGE>-----------------------
 
   removeMessage() {
     const element = document.querySelector('.stop-load');
