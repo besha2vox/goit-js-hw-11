@@ -8,7 +8,7 @@ export class LoadMore {
       this.loadMore.classList.contains('is-loading-hidden');
     this.isVisibleLoading = this.loadMore.classList.contains('is-loading');
     this.template = `<div class="stop-load">
-  <span>We're sorry, but you've reached the end of search results.</span>
+  <p>We're sorry, but you've reached the end of search results.</p>
   <a href="#search-form">Click to go up</a>
 </div>`;
   }
@@ -48,10 +48,10 @@ export class LoadMore {
   }
 
   // STOP LOADING>-----------------------
-  stopLoad() {
+  stopLoad({ info }) {
     this.loadMoreIsHidden();
 
-    endInfo();
+    info();
     this.loadMore.insertAdjacentHTML('afterend', this.template);
   }
 }

@@ -9,6 +9,10 @@
   flex-shrink: 0;
   padding: 3px 0;
 
+  @media screen and (max-width: 918px) {
+    position: static;
+  }
+
   &__icon {
     color: currentColor;
     height: 24px;

@@ -3,7 +3,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import { API } from './js/api';
 import { cardTemplate } from './js/card-template';
 import { LoadMore } from './js/load-more';
-import { totalHitsCounr, failure } from './js/message';
+import { message } from './js/message';
 import { ThemeSwitcher } from './js/theme-switcher';
 import { smoothScroll } from './js/scroll';
 
@@ -51,7 +51,8 @@ async function onFormSubmit(e) {
   loadMore.loadingHidden();
   lightbox.refresh();
   loadMore.loadingHidden();
-  if (data.totalHits <= refs.gallery.children.length) loadMore.stopLoad();
+  if (data.totalHits <= refs.gallery.children.length)
+    loadMore.stopLoad(message);
 }
 
 // Fetch>-----------------------
@@ -72,7 +73,7 @@ async function fetchPhotos() {
       if (data.hits.length < 1) throw Error();
       return data;
     })
-    .catch(error => failure());
+    .catch(error => message.failure());
 }
 
 // Render>-----------------------
@@ -80,7 +81,7 @@ async function fetchPhotos() {
 function render({ totalHits, hits }) {
   const template = hits.map(cardTemplate).join('');
   if (api.page === 1) {
-    totalHitsCounr(totalHits);
+    message.success(totalHits);
     refs.gallery.innerHTML = template;
     return;
   }
@@ -101,5 +102,6 @@ async function onLoadMoreClick() {
   lightbox.refresh();
   loadMore.loadingHidden();
 
-  if (data.totalHits <= refs.gallery.children.length) loadMore.stopLoad();
+  if (data.totalHits <= refs.gallery.children.length)
+    loadMore.stopLoad(message);
 }

@@ -9,17 +9,6 @@
   <body>
     <main>
       <div class="toolbar">
-        <!-- Разметка формы -->
-        <form id="search-form" class="search-form" id="search-form">
-          <input
-            type="text"
-            name="searchQuery"
-            autocomplete="off"
-            placeholder="Search images..."
-          />
-          <button type="submit">Search</button>
-        </form>
-
         <!-- Разметка переключателя темы -->
         <div class="theme-switch">
           <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
@@ -47,6 +36,17 @@
             <use href="./images/sprite.svg#moon"></use>
           </svg>
         </div>
+
+        <!-- Разметка формы -->
+        <form id="search-form" class="search-form" id="search-form">
+          <input
+            type="text"
+            name="searchQuery"
+            autocomplete="off"
+            placeholder="Search images..."
+          />
+          <button type="submit">Search</button>
+        </form>
       </div>
 
       <div class="gallery"></div>

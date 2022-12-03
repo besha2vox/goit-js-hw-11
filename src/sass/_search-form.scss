@@ -2,8 +2,10 @@
   font-size: 18px;
   display: flex;
   align-items: center;
+  max-width: 100%;
 
   & input {
+    max-width: calc(100% - 15px * 2 - 104px);
     height: 32px;
     outline: none;
     border: none;
